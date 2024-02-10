@@ -1,0 +1,14 @@
+ "ConnectionStrings": {
+   "DefaultConnection": "Server=52.66.184.1;Database=DLudo;User=root;Password=dludo@2023;"
+ }
+
+
+my connection string
+"ConnectionStrings": {
+  "DefaultConnection": "Server=ANKIT-LAPTOP;Database=DLudo;User=root;Password=Ankit@#123;Persist Security Info=False;Connect Timeout=300"
+}
+
+
+ verifyUser url
+
+ https://api1.d-ludo.com/api/Admin/AdminUsers/VerifyUser
