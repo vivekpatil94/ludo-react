@@ -14,12 +14,6 @@ const baseUrl = "https://api1.d-ludo.com/api/";
 const getStats_URL = baseUrl + "Admin/Stats/GetStats";
 
 
-//my code starts ....
-//Tournaments Urls
-const createTournament_URL = baseUrl + "Tournaments";
-const getTournaments_URL = baseUrl + "Tournaments";
-const updateUserDetailsInTournament_URL  = baseUrl + "Tournaments/update-user-details";
-// http://localhost:6505/api/
 
 
 //my code ends ....
@@ -1057,6 +1051,23 @@ export async function deleteApiCredential(apiCredentialId) {
 //#endregion
 
 
+
+
+
+
+
+
+
+//my code starts ....
+//Tournaments Urls
+const createTournament_URL = baseUrl + "Tournaments";
+const getTournaments_URL = baseUrl + "Tournaments";
+const updateUserDetailsInTournament_URL  = baseUrl + "Tournaments/update-user-details";
+// http://localhost:6505/api/
+
+
+
+
 //my code starts ...
 
 
@@ -1098,3 +1109,4 @@ export async function updateUserDetailsInTournament(tournamentId, userId, update
 
 
 //#endregion
+

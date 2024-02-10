@@ -18,7 +18,11 @@ import {
   Paper,
 } from "@mui/material";
 
-// import {createTournament} from "../../services/api";
+// Define CSS styles for TableCell with border and padding
+const cellStyles = {
+  border: '1px solid #dddddd',
+  padding: '15px',
+};
 
 const Tournament = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -68,7 +72,7 @@ const Tournament = (props) => {
       if (response.status === 200) {
         console.log("response data is ", response.data);
         props.showSuccess("Tournament created Successfully!!");
-        
+
       } else {
         // Use response.data directly
         props.showError(response.data.message + "error");
@@ -105,6 +109,26 @@ const Tournament = (props) => {
 
   const handleCloseList = () => {
     setShowTournaments(false);
+  };
+  const handleEdit = (tournament) => {
+    // Implement your logic to handle editing the tournament
+    console.log("Editing tournament:", tournament);
+  };
+
+  const handleCopy = (tournament) => {
+    // Implement your logic to handle copying the tournament
+    console.log("Copying tournament:", tournament);
+  };
+
+  const handleDelete = (tournament) => {
+    // Implement your logic to handle deleting the tournament
+    console.log("Deleting tournament:", tournament);
+  };
+
+  const formatDateTimeString = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+    return date.toLocaleString('en-US', options);
   };
   return (
     <>
@@ -207,27 +231,35 @@ const Tournament = (props) => {
       {showTournaments && (
         <div>
           <Button onClick={handleCloseList}>Close</Button>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Start Date</TableCell>
-                  <TableCell>End Date</TableCell>
-                  <TableCell>Join Fee</TableCell>
+
+          <TableContainer component={Paper} sx={{ textAlign: '-webkit-center' }}>
+            <TableHead>
+              <TableRow >
+                <TableCell>Sr. No</TableCell>
+                <TableCell style={cellStyles}>Title</TableCell>
+                <TableCell style={{ ...cellStyles, maxWidth: '200px' }}>Start Date</TableCell>
+                <TableCell style={{ ...cellStyles, maxWidth: '200px' }}>End Date</TableCell>
+                <TableCell style={{ ...cellStyles, maxWidth: '200px' }}>Join Fee</TableCell>
+                <TableCell style={{ ...cellStyles, maxWidth: '200px' }}>Users Joined</TableCell>
+                <TableCell style={cellStyles}>Actions</TableCell> {/* Add Actions column */}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tournaments.map((tournament, index) => (
+                <TableRow key={tournament.id}>
+                  <TableCell style={cellStyles}>{index + 1}</TableCell>
+                  <TableCell style={cellStyles}>{tournament.title}</TableCell>
+                  <TableCell style={cellStyles}>{new Date(tournament.startDate).toLocaleDateString('en-GB')}</TableCell>
+                  <TableCell style={cellStyles}>{new Date(tournament.endDate).toLocaleString('en-GB')}</TableCell>
+                  <TableCell style={{ ...cellStyles, maxWidth: '200px' }}>{tournament.joinFee}</TableCell>
+                  <TableCell style={cellStyles}>N/A</TableCell>
+                  <TableCell style={cellStyles}> {/* Add Actions buttons */}
+                    <Button onClick={() => handleEdit(tournament)}>Edit</Button>
+                    <Button onClick={() => handleDelete(tournament)}>Delete</Button>
+                  </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {tournaments.map((tournament) => (
-                  <TableRow key={tournament.id}>
-                    <TableCell>{tournament.title}</TableCell>
-                    <TableCell>{tournament.startDate}</TableCell>
-                    <TableCell>{tournament.endDate}</TableCell>
-                    <TableCell>{tournament.joinFee}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+              ))}
+            </TableBody>
           </TableContainer>
         </div>
       )}
